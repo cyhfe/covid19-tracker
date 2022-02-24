@@ -1,23 +1,28 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { fetchData } from "./api"
 import { Cards, CountriesPicker, Chart } from "./components"
 import { Container, Typography } from "@mui/material"
+
+import { ReactComponent as IconCovid } from "./assets/covid-19.svg"
 function App() {
+  const [data, setData] = useState(null)
+  const [country, setCountry] = useState("")
   useEffect(() => {
     async function getData() {
-      const response = await fetchData()
-      console.log(response)
+      const response = await fetchData(country)
+      setData(response)
     }
     getData()
-  }, [])
+  }, [country])
   return (
     <Container>
-      <Typography mb mt variant="h1">
-        COVID 19 TRACKER
+      <Typography mb={2} mt variant="h3">
+        C<IconCovid width={40} />
+        VID 19 TRACKER
       </Typography>
-      <Cards />
-      <CountriesPicker />
-      <Chart />
+      <Cards data={data} />
+      <CountriesPicker setCountry={setCountry} />
+      <Chart country={country} countryData={data} />
     </Container>
   )
 }
