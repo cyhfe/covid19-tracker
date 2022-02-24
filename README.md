@@ -1,6 +1,9 @@
 # Covid-19 tracker
 
 ![](./covid19-tracker.png)
+
+[live](https://cyh-covid19-tracker.netlify.app/)
+[code](https://github.com/cyhfe/covid19-tracker)
 ## 技术选择
 
 react hooks, react-chartjs-2, mui
