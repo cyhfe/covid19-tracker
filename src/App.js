@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect } from "react"
+import { fetchData } from "./api"
+import { Cards, CountriesPicker, Chart } from "./components"
+import { Container, Typography } from "@mui/material"
 function App() {
+  useEffect(() => {
+    async function getData() {
+      const response = await fetchData()
+      console.log(response)
+    }
+    getData()
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Typography mb mt variant="h1">
+        COVID 19 TRACKER
+      </Typography>
+      <Cards />
+      <CountriesPicker />
+      <Chart />
+    </Container>
+  )
 }
 
-export default App;
+export default App
